@@ -1,6 +1,7 @@
+import { Toaster } from 'react-hot-toast'
 import Navbar from '../components/Navbar'
 import '../styles/globals.css'
-import '../component-stylesheets/Navbar.css';
+
 
 
 function MyApp({ Component, pageProps }) {
@@ -8,6 +9,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Navbar />
       <Component {...pageProps} />
+      <Toaster />
     </>
   
   )
