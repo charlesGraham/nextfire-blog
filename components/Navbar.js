@@ -2,10 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 
 function Navbar() {
-    const { user, username } = { };
+    const user = null;
+    const username = null;
 
     return (
         <nav className="navbar">
+            <h1>AgentElite</h1>
             <ul>
                 <li>
                     <Link href="/">
@@ -16,9 +18,9 @@ function Navbar() {
                 {/* user is signed in AND has a username */}
                 {username && (
                     <>
-                        <li className="push-left">
+                        <li className="">
                             <Link href="/admin">
-                                <button className="btn-blue">Write Posts</button>
+                                <button className="">Write Posts</button>
                             </Link>
                         </li>
                         <li>
@@ -30,11 +32,11 @@ function Navbar() {
                 )}
 
                 {/* user is not signed in OR has not created a username */}
-                {username && (
+                {!username && (
                     <>
                     <li>
                         <Link href="/enter">
-                            <button className="btn-blue">Log In</button>
+                            <button id="login-btn">Log In</button>
                         </Link>
                     </li>
                     </>

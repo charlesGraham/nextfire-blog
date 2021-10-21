@@ -2,7 +2,7 @@ html,
 body {
   background-color: #efefef;
   color: #0a1931;
-  
+
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -21,6 +21,9 @@ a {
 
 /* Navbar */
 .navbar {
+  display: flex;
+  justify-content: space-between;
+
   height: 70px;
   width: 100vw;
   background-color: #185ADB;
@@ -30,7 +33,50 @@ a {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.navbar ul {
+.navbar > h1 {
+  padding: 0 50px;
+}
+
+.navbar > h1:hover {
+  cursor: pointer;
+}
+
+.navbar > ul {
+  list-style-type: none;
+  display: flex;
+  margin: 10px 10px;
+  padding: 0 50px;
+}
+
+.navbar > ul > li > button {
+  padding: 15px;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1.15em;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.navbar > ul > li > button:hover {
+  color: #efefef;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#login-btn {
+  background-color: #0a1931;
+  color: #fff;
+}
+
+#login-btn:hover {
+  background-color: #efefef;
+  color: #0a1931;
+  text-decoration: none;
+}
+
+/* .navbar ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -38,7 +84,7 @@ a {
   align-items: center;
   justify-content: space-between;
   height: 100%;
-}
+} */
 
 .navbar img {
   border-radius: 50%;
@@ -47,13 +93,7 @@ a {
   cursor: pointer;
 }
 
-.navbar li {
-  border-radius: 50%;
-  
-}
-
-/* Buttons */
-
+/* Buttons
 .btn, button {
   background-color: var(--color-gray);
   border: none;
@@ -120,7 +160,7 @@ button.btn-logo {
   text-transform: uppercase;
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
-}
+} */
 
 /* Loader */
 .loader {
