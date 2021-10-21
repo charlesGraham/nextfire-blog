@@ -2,8 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 
 function Navbar() {
-    const user = null;
-    const username = null;
+    const user = true;
+    const username = true;
 
     return (
         <nav className="navbar">
@@ -20,7 +20,7 @@ function Navbar() {
                     <>
                         <li className="">
                             <Link href="/admin">
-                                <button className="">Write Posts</button>
+                                <button id="write-btn">Write Posts</button>
                             </Link>
                         </li>
                         <li>
