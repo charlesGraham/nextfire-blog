@@ -1,8 +1,10 @@
 import styles from '../styles/Home.module.css'
 import { auth, GoogleAuthProvider } from '../lib/firebase'
 import Image from 'next/image'
-import { useContext } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { UserContext } from '../lib/context';
+import { debounce } from 'lodash';
+
 
 export default function Enter(props) {
 
@@ -41,5 +43,81 @@ function SignOutButton() {
 }
 
 function UsernameForm() {
+    const [formValue, setFormValue] = useState('');
+    const [isValid, setIsValid] = useState(false);
+    const [loading, setLoading] = useState(false);
 
+    const { user, username } = useContext(UserContext);
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+
+        //create refs for both documents
+        const userDoc = firestore.doc(`users/${user.uid}`);
+        const usernameDoc = firestore.doc(`usernames/${formValue}`);
+
+        //commit both docs together as a bath write
+        const batch = firestore.batch();
+        batch.set(userDoc, { username: formValue, photoURL: user.photoURL, displayName: user.displayName });
+        batch.set(username.Doc, { uid: user.uid });
+
+        await batch.commit();
+    };
+
+    const onChange = (e) => {
+        const val = e.target.value.toLowerCase();
+        const re = /^(?=[a-zA-Z0-9._]{3,15}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
+
+        //only set form value if length is < 3 OR it passes regex
+        if (val.length < 3) {
+            setFormValue(val);
+            setLoading(false);
+            setIsValid(false);
+        }
+
+        if (re.test(val)) {
+            setFormValue(val);
+            setLoading(true);
+            setIsValid(false);
+        }
+    };
+
+    useEffect(() => {
+        checkUsername(formValue);
+    }, [formValue]);
+
+    const checkUsername = useCallback(
+        debounce(async (username) => {
+            if (username.length >= 3) {
+                const ref = firestore.doc(`usernames/${username}`);
+                const { exists } = await ref.get();
+                console.log('Firestore read executed!');
+                setIsValid(!exists);
+                setLoading(false);
+            }
+        }, 500),
+        []
+    );
+
+    return (
+        !username && (
+            <section>
+                <h3>Choose Username</h3>
+                <form onSubmit={onSubmit}>
+                    <input name="username" placeholder="Username" value={formValue} onChange={onChange} />
+                    <button type="submit" className="btn-signup" disabled={!isValid}>Submit</button>
+
+                    <h3>Debug State</h3>
+                    <div>
+                        Username: {formValue}
+                        <br />
+                        Loading: {loading.toString()}
+                        <br />
+                        Username Valid: {isValid.toString()}
+                    </div>
+                </form>
+            </section>
+        )
+    );
 }
+
