@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
+
 function Navbar() {
     const user = true;
     const username = true;
@@ -11,7 +12,7 @@ function Navbar() {
             <ul>
                 <li>
                     <Link href="/">
-                        <button>FEED</button>
+                        <button>ARTICLE FEED</button>
                     </Link>
                 </li>
 
