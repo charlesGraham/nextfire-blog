@@ -25,9 +25,13 @@ function SignInButton() {
     };
 
     return (
-        <button className="btn-google" onClick={signInWithGoogle}>
-            <Image src="/google.png" alt="" width={50} height={50} /> Sign in with Google
-        </button>
+        <div className="google-login">
+            <Image src="/ae.png" alt="" width={200} height={74} />
+            <button className="btn-google" onClick={signInWithGoogle}>
+                <Image src="/google.png" alt="" width={50} height={50} /> Sign in with Google
+            </button>
+        </div>
+        
     );
 }
 
