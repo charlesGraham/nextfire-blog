@@ -1,11 +1,12 @@
 import styles from '../styles/Home.module.css'
 import { auth, GoogleAuthProvider } from '../lib/firebase'
 import Image from 'next/image'
+import { useContext } from 'react';
+import { UserContext } from '../lib/context';
 
 export default function Enter(props) {
 
-    const user = null;
-    const username = null;
+    const { user, username } = useContext(UserContext);
 
     return(
         <main>
