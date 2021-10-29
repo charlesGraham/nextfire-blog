@@ -1,4 +1,4 @@
-import styles from '../styles/Home.module.css'
+
 import { auth, provider } from '../lib/firebase'
 import Image from 'next/image'
 import { useCallback, useContext, useState } from 'react';
