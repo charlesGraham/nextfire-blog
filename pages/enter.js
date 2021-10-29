@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.css'
-import { auth, GoogleAuthProvider } from '../lib/firebase'
+import { auth, provider } from '../lib/firebase'
 import Image from 'next/image'
 import { useCallback, useContext, useState } from 'react';
 import { UserContext } from '../lib/context';
@@ -24,7 +24,7 @@ export default function Enter(props) {
 // sign in with Google
 function SignInButton() {
     const signInWithGoogle = async () => {
-        await auth.signInWithPopup(GoogleAuthProvider);
+        await auth.signInWithPopup(provider);
     };
 
     return (
